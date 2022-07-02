@@ -11,30 +11,40 @@ public class Fighter2AI : MonoBehaviour {
     public GameObject weapon_prefab;
     public float shot_speed;
     public float fireRate;
+    public int maxHealth = 100;
+	public int currentHealth;
     private Rigidbody2D rb;
     private float nextFireTime = 0.0f;
 
     void Start() {
+        currentHealth = maxHealth;
         rb = this.gameObject.GetComponent<Rigidbody2D>();
         closestEnemy = null;
     }
 
     void Update() {
-        closestEnemy = getClosestEnemy();
-        Vector3 direction = closestEnemy.position - transform.position;
-        transform.rotation = Quaternion.Euler (new Vector3(0, 0, Mathf.LerpAngle(transform.rotation.eulerAngles.z, (Mathf.Atan2 (direction.y,direction.x) * Mathf.Rad2Deg) - 90f, 100f*Time.deltaTime)));
-        if (Vector3.Distance(closestEnemy.position, transform.position) > 5f)
+        GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if(currentHealth == 0)
+		{
+			Destroy(gameObject);
+		}
+
+        if (totalEnemies.Length == 0)
         {
-            GetComponent<Rigidbody2D>().AddForce(transform.up * 20f * Time.deltaTime);
+            rb.velocity = new Vector2(0.0f,0.0f);
         } else {
-            print(rb.velocity.magnitude);
-            
-            if( rb.velocity.magnitude > 0.01 )
+            closestEnemy = getClosestEnemy();
+            Vector3 direction = closestEnemy.position - transform.position;
+            transform.rotation = Quaternion.Euler (new Vector3(0, 0, Mathf.LerpAngle(transform.rotation.eulerAngles.z, (Mathf.Atan2 (direction.y,direction.x) * Mathf.Rad2Deg) - 90f, 100f*Time.deltaTime)));
+            if (Vector3.Distance(closestEnemy.position, transform.position) > 5f)
             {
-                GetComponent<Rigidbody2D>().AddForce(-transform.up * 20f * Time.deltaTime);
+                GetComponent<Rigidbody2D>().AddForce(transform.up * 20f * Time.deltaTime);
+            } else {
+                
+                rb.velocity = new Vector2(0.0f,0.0f);
+                
+                Fire(direction);
             }
-            
-            Fire(direction);
         }
     }
 
@@ -78,13 +88,25 @@ public class Fighter2AI : MonoBehaviour {
         
     }
 
-    void OnCollisionEnter2D (Collision2D collision) {
+    void OnCollisionEnter2D (Collision2D collision) 
+    {
  
-        if (collision.gameObject.tag == "Player") {
+        if (collision.gameObject.tag == "Player" ||  collision.gameObject.tag == "Minion") {
             
             Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
         }
     
     }
+
+    void OnTriggerEnter2D(Collider2D col) 
+    {
+        if(col.gameObject.tag != gameObject.tag && col.gameObject.tag != "Player") 
+            TakeDamage(10);
+    }
+
+    public void TakeDamage(int damage)
+	{
+		currentHealth -= damage;
+	}
 }
 

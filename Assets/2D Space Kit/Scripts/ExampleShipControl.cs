@@ -8,15 +8,25 @@ public class ExampleShipControl : MonoBehaviour {
 	public GameObject turret;
 	public GameObject fighter2;
 	public float turret_rotation_speed = 3f;
+	public int maxHealth = 1000;
+	public int currentHealth;
+
+	public StatusBar statusBar;
+
 	// Use this for initialization
 	void Start () {
-	
+		currentHealth = maxHealth;
+		statusBar.SetMaxHealth(maxHealth);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
-	
+		
+		statusBar.SetHealth(currentHealth);
+		if(currentHealth <= 0)
+		{
+			Debug.Log("Game Over");
+		}
 		if (Input.GetKeyDown(KeyCode.Escape))
 			Screen.lockCursor = !Screen.lockCursor;	
 	
@@ -59,11 +69,26 @@ public class ExampleShipControl : MonoBehaviour {
 		}
 
 		if (Input.GetKey(KeyCode.F)) {
-			GameObject friendly = (GameObject) Instantiate(fighter2, transform.position, transform.rotation);
+			GameObject friendly = (GameObject) Instantiate(fighter2, transform.position, transform.rotation, gameObject.transform);
 		}	
 		
 		
 		
 		
+	}
+
+	void OnTriggerEnter2D(Collider2D col) 
+    {
+		if(col.gameObject.tag != gameObject.tag && col.gameObject.tag != "Minion")
+		{
+        	TakeDamage(10);
+		}
+
+    }
+
+
+	public void TakeDamage(int damage)
+	{
+		currentHealth -= damage;
 	}
 }
