@@ -22,6 +22,8 @@ public class Projectile : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D col) {
 
+		if( col == null)
+			return;
 		//Don't want to collide with the ship that's shooting this thing, nor another projectile.
 		if (
 			col.gameObject != firing_ship 

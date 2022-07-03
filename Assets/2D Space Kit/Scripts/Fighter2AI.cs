@@ -20,6 +20,7 @@ public class Fighter2AI : MonoBehaviour {
         currentHealth = maxHealth;
         rb = this.gameObject.GetComponent<Rigidbody2D>();
         closestEnemy = null;
+        
     }
 
     void Update() {
@@ -100,7 +101,9 @@ public class Fighter2AI : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col) 
     {
-        if(col.gameObject.tag != gameObject.tag && col.gameObject.tag != "Player") 
+        if(col == null)
+            return;
+        if(col.gameObject.tag == "Enemy") 
             TakeDamage(10);
     }
 

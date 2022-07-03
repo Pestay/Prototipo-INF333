@@ -9,18 +9,22 @@ public class Charger : MonoBehaviour
     public GameObject death_anim;
     public int maxHealth = 100;
 	public int currentHealth;
+    public GameObject statusBar;
     // Start is called before the first frame update
     void Start()
     {
+        statusBar = gameObject.transform.Find("NPC Canvas(Clone)").gameObject.transform.Find("Status Bar NPC").gameObject;
         currentHealth = maxHealth;
         rb = this.gameObject.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(0.0f, 0.0f);
         rb.inertia = 0.0f;
+        statusBar.GetComponent<StatusBarNPC>().SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
+        statusBar.GetComponent<StatusBarNPC>().SetHealth(currentHealth);
         if(currentHealth == 0)
 		{
 			Destroy(gameObject);

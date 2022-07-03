@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3394002345128074170}
   m_Layer: 0
   m_Name: Fighter 2
-  m_TagString: Player
+  m_TagString: Minion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,8 +133,11 @@ MonoBehaviour:
   player: {fileID: 0}
   closestEnemy: {fileID: 0}
   weapon_prefab: {fileID: 100000, guid: bfe0ba4acc768a5448d46a6c63d8106a, type: 3}
+  statusBar: {fileID: 0}
   shot_speed: 200
   fireRate: 1
+  maxHealth: 100
+  currentHealth: 0
 --- !u!50 &3394002345128074170
 Rigidbody2D:
   serializedVersion: 4

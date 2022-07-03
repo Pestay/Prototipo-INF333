@@ -19,6 +19,7 @@ public class WaveSpawner : MonoBehaviour
     public Wave[] waves;
     public Transform[] spawnPoints;
     public Animator animator;
+    public GameObject status_bar;
     public Text waveName;
     private Wave currentWave;
 
@@ -56,7 +57,9 @@ public class WaveSpawner : MonoBehaviour
         {
             GameObject randomEnemy = currentWave.typeOfEnemies[Random.Range(0,currentWave.typeOfEnemies.Length)];
             Transform randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            Instantiate(randomEnemy, randomPoint.position, Quaternion.identity);
+            GameObject enemy = Instantiate(randomEnemy, randomPoint.position, Quaternion.identity);
+            GameObject bar = Instantiate(status_bar, transform.position, transform.rotation, enemy.transform);
+            //bar.GetComponent<StatusBarNPC>().target = enemy.gameObject;
             currentWave.nOfEnemies--;
             nextSpawnTime = Time.time + currentWave.spawnInterval; 
             if (currentWave.nOfEnemies == 0)

@@ -79,7 +79,9 @@ public class ExampleShipControl : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col) 
     {
-		if(col.gameObject.tag != gameObject.tag && col.gameObject.tag != "Minion")
+		if(col == null)
+            return;
+		if(col.gameObject.tag == "Enemy")
 		{
         	TakeDamage(10);
 		}
