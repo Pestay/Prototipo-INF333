@@ -1,0 +1,33 @@
+fileFormatVersion: 2
+guid: cefe57ad54db94946a3abae5d5e0dade
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Vesta
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: d86a46338c5be5149938032d84cc1dcf, type: 3}
+  - {fileID: 12800000, guid: ed21c4c51aaabf541b5f5f2322c07ec9, type: 3}
+  - {fileID: 12800000, guid: 3d8029aadca1bf34a85fc8030b08764e, type: 3}
+  - {fileID: 12800000, guid: d5cbffc553a126e489bd26526e18c30c, type: 3}
+  - {fileID: 12800000, guid: 886484cbdd4e0a948ae10be9754efc05, type: 3}
+  - {fileID: 12800000, guid: 287819bbfb6bd89479f743320e111def, type: 3}
+  - {fileID: 12800000, guid: 643a4f06670d7384e935461210494014, type: 3}
+  - {fileID: 12800000, guid: c2baeac4a496e6f4c8176a48ae568cd6, type: 3}
+  - {fileID: 12800000, guid: dbf786cd7e4b2d140a9952c277cdd2c4, type: 3}
+  - {fileID: 12800000, guid: 64de269023d7f6d479bde422a60f76a7, type: 3}
+  - {fileID: 12800000, guid: 4be61e3964bc3104a9af8f78ae0468ff, type: 3}
+  - {fileID: 12800000, guid: a3b41f0eb634df24ba10cc52bd78cdbe, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

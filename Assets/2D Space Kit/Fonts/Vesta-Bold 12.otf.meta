@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: 886484cbdd4e0a948ae10be9754efc05
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Vesta
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: d5cbffc553a126e489bd26526e18c30c, type: 3}
+  - {fileID: 12800000, guid: 287819bbfb6bd89479f743320e111def, type: 3}
+  - {fileID: 12800000, guid: 643a4f06670d7384e935461210494014, type: 3}
+  - {fileID: 12800000, guid: c2baeac4a496e6f4c8176a48ae568cd6, type: 3}
+  - {fileID: 12800000, guid: 64de269023d7f6d479bde422a60f76a7, type: 3}
+  - {fileID: 12800000, guid: a3b41f0eb634df24ba10cc52bd78cdbe, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

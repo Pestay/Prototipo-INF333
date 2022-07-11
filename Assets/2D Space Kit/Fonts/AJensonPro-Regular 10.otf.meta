@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: 91317107d75983344a3481aeef1e313b
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Adobe Jenson Pro
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 303e54197c75a0042b1cb737d1545cd2, type: 3}
+  - {fileID: 12800000, guid: b010bf3c1eac7b5498508f913e67a41c, type: 3}
+  - {fileID: 12800000, guid: 0090f667cc1e9e94d8309a36f42cedbf, type: 3}
+  - {fileID: 12800000, guid: 90c12c0b7dc82d14da8e134355bf733f, type: 3}
+  - {fileID: 12800000, guid: d0e4ef259319e954ca102b127a095814, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
