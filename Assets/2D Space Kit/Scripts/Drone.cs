@@ -29,7 +29,7 @@ public class Drone : MonoBehaviour
     void Update()
     {
         statusBar.GetComponent<StatusBarNPC>().SetHealth(currentHealth);
-        if(currentHealth == 0)
+        if(currentHealth <= 0)
 		{
 			Destroy(gameObject);
 		}

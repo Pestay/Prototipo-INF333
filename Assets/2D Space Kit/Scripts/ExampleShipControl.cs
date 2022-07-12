@@ -27,7 +27,7 @@ public class ExampleShipControl : MonoBehaviour {
 		{
 			Debug.Log("Game Over");
 		}
-		if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown(KeyCode.LeftAlt))
 			Screen.lockCursor = !Screen.lockCursor;	
 	
 	
@@ -69,12 +69,21 @@ public class ExampleShipControl : MonoBehaviour {
 		}
 
 		if (Input.GetKey(KeyCode.F)) {
-			GameObject friendly = (GameObject) Instantiate(fighter2, transform.position, transform.rotation, gameObject.transform);
+			SpawnFighter();
 		}	
 		
 		
 		
 		
+	}
+
+	public void SpawnFighter ()
+	{
+		Debug.Log("Spawned");
+		float angle = Random.Range(0,360); 
+		Vector3 offset = new Vector3(Mathf.Cos(angle)* 2.5f,Mathf.Sin(angle)* 2.5f,0);
+
+		GameObject friendly = (GameObject) Instantiate(fighter2, transform.position + offset, transform.rotation, gameObject.transform);
 	}
 
 	void OnTriggerEnter2D(Collider2D col) 

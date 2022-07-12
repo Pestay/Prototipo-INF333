@@ -25,7 +25,7 @@ public class Fighter2AI : MonoBehaviour {
 
     void Update() {
         GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if(currentHealth == 0)
+        if(currentHealth <= 0)
 		{
 			Destroy(gameObject);
 		}

@@ -39,19 +39,21 @@ public class CustomPointer : MonoBehaviour {
 	}
 	
 	void Start () {
-		Screen.lockCursor = true;
+		
+		//Screen.lockCursor = true;
 		
 		deadzone_rect = new Rect((Screen.width / 2) - (deadzone_radius), (Screen.height / 2) - (deadzone_radius), deadzone_radius * 2, deadzone_radius * 2);
 	
 		if (!use_mouse_input && !use_gamepad_input)
 			Debug.LogError("(FlightControls) No input method selected! See the Custom Pointer script on the Main Camera and select either mouse or gamepad.");
 			
-
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Screen.lockCursor = true;
+		//Screen.lockCursor = true;
+		
 		if (use_mouse_input) {
 		
 			float x_axis = Input.GetAxis("Mouse X");
@@ -93,8 +95,8 @@ public class CustomPointer : MonoBehaviour {
 		
 		
 		}*/
-		
 		//If the pointer returns to the center of the screen and it's not in the deadzone...
+		
 		if (pointer_returns_to_center && !deadzone_rect.Contains(pointerPosition)) {
 			//If there's no input and instant snapping is on...
 			if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && instant_snapping) {
@@ -107,6 +109,7 @@ public class CustomPointer : MonoBehaviour {
 				pointerPosition.y = Mathf.Lerp (pointerPosition.y, Screen.height / 2, center_speed * Time.deltaTime);
 			}
 		}
+		
 		
 		//Keep the pointer within the bounds of the screen.
 		pointerPosition.x = Mathf.Clamp (pointerPosition.x, 0, Screen.width);
