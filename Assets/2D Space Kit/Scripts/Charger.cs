@@ -10,6 +10,7 @@ public class Charger : MonoBehaviour
     public int maxHealth = 100;
 	public int currentHealth;
     public GameObject statusBar;
+    public float acceleration_amount = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,12 +29,13 @@ public class Charger : MonoBehaviour
         if(currentHealth <= 0)
 		{
 			Destroy(gameObject);
+            player.gameObject.GetComponent<ExampleShipControl>().addFunds(10);
 		}
         player = getPlayerPos();
         Vector3 direction = player.position - transform.position;
         transform.rotation = Quaternion.Euler (new Vector3(0, 0, Mathf.LerpAngle(transform.rotation.eulerAngles.z, (Mathf.Atan2 (direction.y,direction.x) * Mathf.Rad2Deg) - 90f, 100f*Time.deltaTime)));
 
-        rb.AddForce(transform.up * 50f * Time.deltaTime);
+        rb.AddForce(transform.up * acceleration_amount * Time.deltaTime);
         
             
     }

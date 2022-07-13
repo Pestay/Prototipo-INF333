@@ -13,6 +13,8 @@ public class Drone : MonoBehaviour
 	public int currentHealth;
     private float nextFireTime = 0.0f;
     public GameObject statusBar;
+    public float acceleration_amount = 1f;
+    public float rotation_speed = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -32,17 +34,17 @@ public class Drone : MonoBehaviour
         if(currentHealth <= 0)
 		{
 			Destroy(gameObject);
+            player.gameObject.GetComponent<ExampleShipControl>().addFunds(10);
 		}
 
         
         player = getPlayerPos();
         Vector3 direction = player.position - transform.position;
-        transform.rotation = Quaternion.Euler (new Vector3(0, 0, Mathf.LerpAngle(transform.rotation.eulerAngles.z, (Mathf.Atan2 (direction.y,direction.x) * Mathf.Rad2Deg) - 90f, 100f*Time.deltaTime)));
+        transform.rotation = Quaternion.Euler (new Vector3(0, 0, Mathf.LerpAngle(transform.rotation.eulerAngles.z, (Mathf.Atan2 (direction.y,direction.x) * Mathf.Rad2Deg) - 90f, rotation_speed*Time.deltaTime)));
         if (Vector3.Distance(player.position, transform.position) > 7f)
         {
-            rb.AddForce(transform.up * 50f * Time.deltaTime);
+            rb.AddForce(transform.up * acceleration_amount * Time.deltaTime);
         } else {
-            rb.velocity = new Vector2(0.0f,0.0f);
             Fire(direction);
         }
             

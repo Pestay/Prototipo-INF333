@@ -10,19 +10,25 @@ public class ExampleShipControl : MonoBehaviour {
 	public float turret_rotation_speed = 3f;
 	public int maxHealth = 1000;
 	public int currentHealth;
+	public int startingMoney = 0;
+	public int fighterCost = 20;
+	public int currentMoney;
 
 	public StatusBar statusBar;
 
 	// Use this for initialization
 	void Start () {
 		currentHealth = maxHealth;
+		currentMoney = startingMoney;
 		statusBar.SetMaxHealth(maxHealth);
+		statusBar.SetFunds(startingMoney);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 		statusBar.SetHealth(currentHealth);
+		statusBar.SetFunds(currentMoney);
 		if(currentHealth <= 0)
 		{
 			Debug.Log("Game Over");
@@ -77,13 +83,23 @@ public class ExampleShipControl : MonoBehaviour {
 		
 	}
 
+	public void addFunds(int amount) {
+		currentMoney += amount;
+	}
+
 	public void SpawnFighter ()
 	{
-		Debug.Log("Spawned");
-		float angle = Random.Range(0,360); 
-		Vector3 offset = new Vector3(Mathf.Cos(angle)* 2.5f,Mathf.Sin(angle)* 2.5f,0);
+		if(currentMoney - fighterCost >= 0)
+		{
+			currentMoney -= fighterCost;
+			Debug.Log("Spawned");
+			float angle = Random.Range(0,360); 
+			Vector3 offset = new Vector3(Mathf.Cos(angle)* 2.5f,Mathf.Sin(angle)* 2.5f,0);
 
-		GameObject friendly = (GameObject) Instantiate(fighter2, transform.position + offset, transform.rotation, gameObject.transform);
+			GameObject friendly = (GameObject) Instantiate(fighter2, transform.position + offset, transform.rotation, gameObject.transform);
+		} else {
+			Debug.Log("Not enough money");
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D col) 

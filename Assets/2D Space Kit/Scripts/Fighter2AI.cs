@@ -15,6 +15,7 @@ public class Fighter2AI : MonoBehaviour {
 	public int currentHealth;
     private Rigidbody2D rb;
     private float nextFireTime = 0.0f;
+    public float acceleration_amount = 1f;
 
     void Start() {
         currentHealth = maxHealth;
@@ -28,18 +29,23 @@ public class Fighter2AI : MonoBehaviour {
         if(currentHealth <= 0)
 		{
 			Destroy(gameObject);
+            if (Vector3.Distance(transform.position,player.position) > 4f )
+            {
+                GetComponent<Rigidbody2D>().AddForce(transform.up * acceleration_amount * Time.deltaTime);
+            }
 		}
 
         if (totalEnemies.Length == 0)
         {
             rb.velocity = new Vector2(0.0f,0.0f);
+
         } else {
             closestEnemy = getClosestEnemy();
             Vector3 direction = closestEnemy.position - transform.position;
             transform.rotation = Quaternion.Euler (new Vector3(0, 0, Mathf.LerpAngle(transform.rotation.eulerAngles.z, (Mathf.Atan2 (direction.y,direction.x) * Mathf.Rad2Deg) - 90f, 100f*Time.deltaTime)));
             if (Vector3.Distance(closestEnemy.position, transform.position) > 5f)
             {
-                GetComponent<Rigidbody2D>().AddForce(transform.up * 20f * Time.deltaTime);
+                GetComponent<Rigidbody2D>().AddForce(transform.up * acceleration_amount * Time.deltaTime);
             } else {
                 
                 rb.velocity = new Vector2(0.0f,0.0f);
