@@ -15,37 +15,188 @@ public class Fighter2AI : MonoBehaviour {
 	public int currentHealth;
     private Rigidbody2D rb;
     private float nextFireTime = 0.0f;
-    public float acceleration_amount = 1f;
 
+    enum STATES : ushort{
+        NULL_STATE, // used for return null
+        SEARCH_ENEMY,
+        GO_ATTACK_POS,
+        ATTACK
+    }
+
+    STATES current_state = STATES.SEARCH_ENEMY;
+    Rigidbody2D current_target = null;
+    Vector3 attack_position = Vector3.zero;
+    Vector3 random_vec = Vector3.zero; // <-- FIX
+    
+    void UpdateFSM(){ // called each frame
+        STATES new_state = GetTransitions(current_state);
+        if(new_state != STATES.NULL_STATE){
+            OnEnterState(current_state, new_state);
+            //OnExitState(new_state, current_state);
+            current_state = new_state;
+        }
+        DoActions(current_state);
+    }
+
+
+    STATES GetTransitions(STATES state){ // check transition for selected state 
+        switch (state){
+            case STATES.SEARCH_ENEMY:
+                if(TargetExist()){
+                    return STATES.GO_ATTACK_POS;
+                }
+                break;
+            case STATES.GO_ATTACK_POS:
+                if(!TargetExist()){
+                    return STATES.SEARCH_ENEMY;
+                }
+                else if( Vector3.Distance( this.transform.position, attack_position) < 5.0f ){
+                    return STATES.ATTACK;
+                }
+                break;
+            case STATES.ATTACK:
+                if(!TargetExist()){
+                    return STATES.SEARCH_ENEMY;
+                }
+                else if( Vector3.Distance( this.transform.position, attack_position) > 20.0f ){
+                    return STATES.GO_ATTACK_POS;
+                }
+                break;
+        }
+        return STATES.NULL_STATE;
+    }
+
+
+    void OnEnterState(STATES last_state, STATES new_state){
+        switch(last_state){
+            case STATES.SEARCH_ENEMY:
+                Debug.Log("SEARCH ENEMY");
+                break;
+            case STATES.GO_ATTACK_POS:
+                Debug.Log("ATTACK POS");
+                break;
+            case STATES.ATTACK:
+                Debug.Log("ATTACK");
+                break;
+        }
+    }
+
+
+
+    void DoActions(STATES state){ // Events while in state
+        switch(state){
+            case STATES.SEARCH_ENEMY:
+                FindTarget();
+                break;
+            case STATES.GO_ATTACK_POS:
+                GoToAttackPosition();
+                break;
+            case STATES.ATTACK:
+                DoAttack();
+                break;
+        }
+    }
+
+    //------- Checkers
+    bool TargetExist(){
+        if(current_target != null){
+            return true;
+        }
+        return false;
+    }
+
+
+    
+
+    //------- Actions, this methods change global variables
+
+    void FindTarget(){
+        //rb.velocity = new Vector2(0.0f,0.0f);
+        GameObject[] total_enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if(total_enemies.Length > 0){
+            current_target = total_enemies[GetClosestTargetIndex(total_enemies)].GetComponent<Rigidbody2D>();
+        }
+    }
+    
+    
+    
+    void GoToAttackPosition(){
+        attack_position = current_target.transform.position + random_vec;
+        MoveToPos(attack_position);
+    }
+    
+    
+    void DoAttack(){
+        //rb.velocity = new Vector2(0.0f,0.0f);
+        Vector3 dir = Vector3.Normalize(this.transform.position - current_target.transform.position);
+        transform.rotation = Quaternion.Euler (new Vector3(0, 0, Mathf.LerpAngle(transform.rotation.eulerAngles.z, (Mathf.Atan2 (dir.y,dir.x) * Mathf.Rad2Deg) + 90f, 100f*Time.deltaTime))); 
+        Fire(dir);
+    }
+
+
+
+
+
+    //-------------- Utility
+    
+
+
+
+    //Return a index of the closest target
+    int GetClosestTargetIndex(GameObject[] target_list){ 
+        float closestDistance = Mathf.Infinity;
+        int r_index = 0;
+        for(int i = 0; i < target_list.Length; i++){
+            float distance = Vector3.Distance(this.transform.position, target_list[i].transform.position);
+            if(distance < closestDistance){
+                closestDistance = distance;
+                r_index = i;
+            }
+        }
+
+        return r_index;
+    }
+
+
+    void MoveToPos(Vector3 pos){ // Move target to position
+        Vector3 direction = Vector3.Normalize(pos - transform.position);
+        Vector3 dir = Vector3.Normalize(current_target.transform.position - transform.position);
+        //transform.position = pos;
+        GetComponent<Rigidbody2D>().AddForce(transform.up * 100f * Time.deltaTime);
+        transform.rotation = Quaternion.Euler (new Vector3(0, 0, Mathf.LerpAngle(transform.rotation.eulerAngles.z, (Mathf.Atan2 (dir.y,dir.x) * Mathf.Rad2Deg) - 90f, 100f*Time.deltaTime)));
+    }
+
+
+
+    
     void Start() {
         currentHealth = maxHealth;
         rb = this.gameObject.GetComponent<Rigidbody2D>();
         closestEnemy = null;
+        random_vec = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        random_vec = Vector3.ClampMagnitude(random_vec, 1.0f);
         
     }
 
     void Update() {
-        GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if(currentHealth <= 0)
-		{
+        if(currentHealth <= 0){
 			Destroy(gameObject);
-            if (Vector3.Distance(transform.position,player.position) > 4f )
-            {
-                GetComponent<Rigidbody2D>().AddForce(transform.up * acceleration_amount * Time.deltaTime);
-            }
 		}
+        UpdateFSM();
 
+        /*
         if (totalEnemies.Length == 0)
         {
             rb.velocity = new Vector2(0.0f,0.0f);
-
         } else {
             closestEnemy = getClosestEnemy();
+
+
             Vector3 direction = closestEnemy.position - transform.position;
             transform.rotation = Quaternion.Euler (new Vector3(0, 0, Mathf.LerpAngle(transform.rotation.eulerAngles.z, (Mathf.Atan2 (direction.y,direction.x) * Mathf.Rad2Deg) - 90f, 100f*Time.deltaTime)));
             if (Vector3.Distance(closestEnemy.position, transform.position) > 5f)
             {
-                GetComponent<Rigidbody2D>().AddForce(transform.up * acceleration_amount * Time.deltaTime);
+                GetComponent<Rigidbody2D>().AddForce(transform.up * 20f * Time.deltaTime);
             } else {
                 
                 rb.velocity = new Vector2(0.0f,0.0f);
@@ -53,6 +204,7 @@ public class Fighter2AI : MonoBehaviour {
                 Fire(direction);
             }
         }
+        */
     }
 
     public Transform getClosestEnemy()
@@ -118,4 +270,3 @@ public class Fighter2AI : MonoBehaviour {
 		currentHealth -= damage;
 	}
 }
-

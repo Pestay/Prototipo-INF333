@@ -93,7 +93,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3394002345128074173}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -138,7 +138,6 @@ MonoBehaviour:
   fireRate: 1
   maxHealth: 100
   currentHealth: 0
-  acceleration_amount: 100
 --- !u!50 &3394002345128074170
 Rigidbody2D:
   serializedVersion: 4
@@ -153,7 +152,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 1
-  m_AngularDrag: 0.5
+  m_AngularDrag: 0.1
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
