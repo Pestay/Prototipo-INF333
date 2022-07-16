@@ -7,6 +7,8 @@ public class PlayerControlledTurret : MonoBehaviour {
 	public GameObject[] barrel_hardpoints;
 	public float turret_rotation_speed = 3f;
 	public float shot_speed;
+	public GameObject Shooting;
+
 	int barrel_index = 0;
 	// Use this for initialization
 	void Start () {
@@ -23,6 +25,7 @@ public class PlayerControlledTurret : MonoBehaviour {
 
 
 		if (Input.GetMouseButtonDown(0) && barrel_hardpoints != null) {
+			Instantiate(Shooting);
 			GameObject bullet = (GameObject) Instantiate(weapon_prefab, barrel_hardpoints[barrel_index].transform.position, transform.rotation);
 			bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.up * shot_speed);
 			bullet.GetComponent<Projectile>().firing_ship = transform.parent.gameObject;
