@@ -98,7 +98,8 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: e2f50a478fee5df4c8637c2cf6391020, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: e2f50a478fee5df4c8637c2cf6391020,
+    type: 2}
 --- !u!196 &5
 NavMeshSettings:
   serializedVersion: 2
@@ -469,7 +470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106571707}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100, y: 0, z: 0}
+  m_LocalPosition: {x: 50, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1867298762}
@@ -633,7 +634,8 @@ MonoBehaviour:
   - {fileID: 1732103293}
   turret_rotation_speed: 3
   shot_speed: 355
-  Shooting: {fileID: 6384291285115429383, guid: 956b0d07500a61149bfccdb2400b1617, type: 3}
+  Shooting: {fileID: 6384291285115429383, guid: 956b0d07500a61149bfccdb2400b1617,
+    type: 3}
 --- !u!212 &211515555
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -709,7 +711,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224329511}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -100, z: 0}
+  m_LocalPosition: {x: 0, y: -50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1867298762}
@@ -1596,7 +1598,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375645237}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100, y: 0, z: 0}
+  m_LocalPosition: {x: -50, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1867298762}
@@ -1626,7 +1628,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 394090260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100, y: -100, z: 0}
+  m_LocalPosition: {x: -50, y: -50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1867298762}
@@ -2695,7 +2697,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 713729311}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100, y: -100, z: 0}
+  m_LocalPosition: {x: 50, y: -50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1867298762}
@@ -4206,7 +4208,8 @@ MonoBehaviour:
   - {fileID: 509996852}
   turret_rotation_speed: 3
   shot_speed: 355
-  Shooting: {fileID: 6384291285115429383, guid: 956b0d07500a61149bfccdb2400b1617, type: 3}
+  Shooting: {fileID: 6384291285115429383, guid: 956b0d07500a61149bfccdb2400b1617,
+    type: 3}
 --- !u!212 &1151740561
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4944,7 +4947,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1403733985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100, y: 100, z: 0}
+  m_LocalPosition: {x: -50, y: 50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1867298762}
@@ -5053,7 +5056,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531096491}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100, y: 100, z: 0}
+  m_LocalPosition: {x: 50, y: 50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1867298762}
@@ -5219,7 +5222,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6114,16 +6117,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - waveName: Oleada 1
-    nOfEnemies: 40
+    nOfEnemies: 10
     typeOfEnemies:
     - {fileID: 6563971143501619546, guid: 4c3092ff11d990749b06c5ac4bd65d10, type: 3}
     - {fileID: 6267558264974220083, guid: f88ab0f7a0e4f7f4ead78e7c17a45078, type: 3}
     spawnInterval: 2
   - waveName: Oleada 2
-    nOfEnemies: 80
+    nOfEnemies: 20
     typeOfEnemies:
     - {fileID: 6267558264974220083, guid: f88ab0f7a0e4f7f4ead78e7c17a45078, type: 3}
     - {fileID: 6563971143501619546, guid: 4c3092ff11d990749b06c5ac4bd65d10, type: 3}
+    spawnInterval: 2
+  - waveName: Oldeada 3
+    nOfEnemies: 30
+    typeOfEnemies:
+    - {fileID: 6267558264974220083, guid: f88ab0f7a0e4f7f4ead78e7c17a45078, type: 3}
+    - {fileID: 6563971143501619546, guid: 4c3092ff11d990749b06c5ac4bd65d10, type: 3}
+    - {fileID: 1744912593587027927, guid: 58981d95bcf671246bdc5bcfb6a609c6, type: 3}
     spawnInterval: 2
   - waveName: Oldeada 3
     nOfEnemies: 160
@@ -6142,7 +6152,8 @@ MonoBehaviour:
   - {fileID: 713729312}
   - {fileID: 1403733986}
   animator: {fileID: 1764804347}
-  status_bar: {fileID: 1849083966066955800, guid: c1240b9784905214e96d466338fcccbb, type: 3}
+  status_bar: {fileID: 1849083966066955800, guid: c1240b9784905214e96d466338fcccbb,
+    type: 3}
   waveName: {fileID: 1202565888}
 --- !u!4 &1764804346
 Transform:
@@ -6611,7 +6622,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1900038343}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 100, z: 0}
+  m_LocalPosition: {x: 0, y: 50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1867298762}
@@ -7391,7 +7402,8 @@ MonoBehaviour:
   acceleration_amount: 100
   rotation_speed: 100
   turret: {fileID: 0}
-  fighter2: {fileID: 3394002345128074173, guid: 00fc0bc4a096d9648ae926cc650b203d, type: 3}
+  fighter2: {fileID: 3394002345128074173, guid: 00fc0bc4a096d9648ae926cc650b203d,
+    type: 3}
   turret_rotation_speed: 3
   maxHealth: 1000
   currentHealth: 0
