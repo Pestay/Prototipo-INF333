@@ -43,7 +43,6 @@ public class Boss : MonoBehaviour
         if (Vector3.Distance(player.position, transform.position) > 8f)
         {
             rb.AddForce(transform.up * acceleration_amount * Time.deltaTime);
-            Fire(direction);
         } else {
             Fire(direction);
         }
@@ -68,7 +67,7 @@ public class Boss : MonoBehaviour
     }
 
     void FireOneShot(Vector3 direction) {
-        int bullets = 41;
+        int bullets = 35;
         for (int i = 0; i < bullets; i++)
         {
             Vector3 offset = new Vector3(Mathf.Cos(360/bullets * i)* 2.5f,Mathf.Sin(360/bullets * i)* 2.5f,0);

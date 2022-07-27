@@ -152,7 +152,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   statusBar: {fileID: 0}
-  acceleration_amount: 100
+  acceleration_amount: 250
 --- !u!50 &6563971143501619551
 Rigidbody2D:
   serializedVersion: 4

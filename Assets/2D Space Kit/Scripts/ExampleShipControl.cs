@@ -7,6 +7,7 @@ public class ExampleShipControl : MonoBehaviour {
 	public float rotation_speed = 1f;
 	public GameObject turret;
 	public GameObject fighter2;
+	public GameObject gameOverUI;
 	public float turret_rotation_speed = 3f;
 	public int maxHealth = 1000;
 	public int currentHealth;
@@ -32,6 +33,8 @@ public class ExampleShipControl : MonoBehaviour {
 		if(currentHealth <= 0)
 		{
 			Debug.Log("Game Over");
+			gameOverUI.SetActive(true);
+			Time.timeScale = 0f;
 		}
 		if (Input.GetKeyDown(KeyCode.LeftAlt))
 			Screen.lockCursor = !Screen.lockCursor;	
@@ -75,7 +78,7 @@ public class ExampleShipControl : MonoBehaviour {
 		}
 
 		if (Input.GetKey(KeyCode.F)) {
-			SpawnFighter();
+			//SpawnFighter();
 		}	
 		
 		
