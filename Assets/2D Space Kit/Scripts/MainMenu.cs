@@ -7,16 +7,19 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject instrucctionsUI;
     public GameObject mainMenuUI;
+    public GameObject creditsUI;
 
     public void PlayGame ()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+
     public void QuitGame ()
     {
         Application.Quit();
     }
+
 
     public void Instructions() 
     {
@@ -24,10 +27,19 @@ public class MainMenu : MonoBehaviour
         instrucctionsUI.SetActive(true);
     }
 
+
     public void InstructionsExit()
     {
         mainMenuUI.SetActive(true);
         instrucctionsUI.SetActive(false);
+        creditsUI.SetActive(false);
     }
+
+
+    public void Credits(){
+        mainMenuUI.SetActive(false);
+        creditsUI.SetActive(true);
+    }
+
 
 }
